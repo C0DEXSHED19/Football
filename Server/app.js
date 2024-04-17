@@ -26,4 +26,14 @@ app.get('/getAllTeams', (request, response) => {
     .catch(err => console.log(err));
 })
 
+app.get('/getAllPlayers', (request, response) => {
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.getAllPlayers();
+    
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+})
+
 app.listen(process.env.PORT, () => console.log("app is running"));

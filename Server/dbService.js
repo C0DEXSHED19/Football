@@ -41,7 +41,7 @@ class DbService{
     async getAllPlayers() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT name, stadium, wins, losses FROM Player;";
+                const query = "SELECT name, goals, assists, team_name FROM Player JOIN Person ON Player.personid=Person.id;";
 
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
