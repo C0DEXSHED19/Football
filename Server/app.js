@@ -11,7 +11,44 @@ app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 
 //CREATE
-app.post('/insert', (request, response) => {
+app.post('/insertTeam', (request, response) => {
+    const { name } = request.body;
+    const { points } = request.body;
+    const db = dbService.getDbServiceInstance();
+    
+    const result = db.insertNewTeam(name, points);
+
+    result
+    .then(data => response.json({ data: data}))
+    .catch(err => console.log(err));
+
+});
+
+app.post('/insertPerson', (request, response) => {
+    const { name } = request.body;
+    const { age } = request.body;
+    
+    const db = dbService.getDbServiceInstance();
+    
+    const result = db.insertNewPerson(name, age);
+
+    result
+    .then(data => response.json({ data: data}))
+    .catch(err => console.log(err));
+
+});
+
+app.post('/insertPlayer', (request, response) => {
+    const { name } = request.body;
+    const { team } = request.body;
+    
+    const db = dbService.getDbServiceInstance();
+    
+    const result = db.insertNewPlayer(name, team);
+
+    result
+    .then(data => response.json({ data: data}))
+    .catch(err => console.log(err));
 
 });
 
