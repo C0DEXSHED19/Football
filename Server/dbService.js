@@ -118,6 +118,80 @@ class DbService{
             console.log(error);
         }
     }
+    async deleteTeam(name) {
+        try {
+             
+            const response = await new Promise((resolve, reject) => {
+                const query = "DELETE FROM Team WHERE name = ?";
+    
+                connection.query(query, [name] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+    
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+    async deletePlayer(name) {
+        try {
+             
+            const response = await new Promise((resolve, reject) => {
+                const query = "DELETE FROM player WHERE player_name = ?";
+    
+                connection.query(query, [name] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+    
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updatePoints(team_name, points) {
+        try {
+            
+            const response = await new Promise((resolve, reject) => {
+                const query = "UPDATE Team SET points = ? WHERE name = ?";
+    
+                connection.query(query, [points, team_name] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+    
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+    async updatePlayerNewTeam(player_name, newTeam) {
+        try {
+            
+            const response = await new Promise((resolve, reject) => {
+                const query = "UPDATE Player SET Team_Name = ? WHERE player_name = ?";
+    
+                connection.query(query, [newTeam, player_name] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+    
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
 
 }
 
