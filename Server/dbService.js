@@ -6,7 +6,7 @@ dotenv.config();
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Ubermacht443',
+    password: 'your password',
     database: 'Football',
     port: '3306'
 });
